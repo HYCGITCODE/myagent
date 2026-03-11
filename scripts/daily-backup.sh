@@ -76,5 +76,18 @@ echo "版本：${VERSION_DIR}"
 echo "位置：${BACKUP_REPO_DIR}/${VERSION_DIR}"
 echo "======================================"
 
-# 发送通知（可选）
-# 可以在这里添加飞书/钉钉通知
+# 发送通知给老大
+echo "📧 发送备份成功通知..."
+cat > /tmp/backup_notification.json << EOF
+{
+  "action": "send",
+  "channel": "feishu",
+  "target": "ou_2680962647f0f8827a7c9b18848f44ee",
+  "message": "✅ OpenClaw 每日备份完成\n\n📅 日期：${DATE}\n📦 版本：${VERSION_DIR}\n📍 位置：myagent 仓库\n🔗 链接：https://github.com/HYCGITCODE/myagent\n\n备份内容:\n- Agent 配置文件\n- 模型配置\n- 扩展插件\n- 工作空间文档\n- 项目文件\n\n排除项:\n- node_modules\n- 日志文件\n- 浏览器缓存\n- 临时文件\n\n备份大小：$(du -sh ${BACKUP_REPO_DIR}/${VERSION_DIR} 2>/dev/null | cut -f1)"
+}
+EOF
+
+# 使用 openclaw message 命令发送通知
+cd /home/admin/.openclaw
+openclaw message send --channel feishu --target ou_2680962647f0f8827a7c9b18848f44ee \
+  "✅ OpenClaw 每日备份完成\n\n📅 日期：${DATE}\n📦 版本：${VERSION_DIR}\n📍 位置：myagent 仓库\n🔗 链接：https://github.com/HYCGITCODE/myagent\n\n备份内容:\n- Agent 配置文件\n- 模型配置\n- 扩展插件\n- 工作空间文档\n- 项目文件\n\n排除项:\n- node_modules\n- 日志文件\n- 浏览器缓存\n- 临时文件\n\n备份大小：$(du -sh ${BACKUP_REPO_DIR}/${VERSION_DIR} 2>/dev/null | cut -f1)" 2>/dev/null || echo "通知发送失败，请检查 openclaw 命令"

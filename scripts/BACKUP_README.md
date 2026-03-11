@@ -129,8 +129,20 @@ grep CRON /var/log/syslog | tail -20
 (crontab -l; echo "0 0 * * * /home/admin/.openclaw/scripts/daily-backup.sh >> /home/admin/.openclaw/logs/backup.log 2>&1") | crontab -
 ```
 
+## 🔔 通知功能
+
+**备份成功后自动发送飞书消息给老大**
+
+通知内容：
+- ✅ 备份状态
+- 📅 备份日期
+- 📦 版本号
+- 📍 备份位置
+- 🔗 GitHub 链接
+- 📊 备份大小
+
 ## 📞 联系
 
 **维护者**: OCA 胡小豆  
 **创建时间**: 2026-03-11  
-**最后更新**: 2026-03-11
+**最后更新**: 2026-03-12 (添加通知功能)

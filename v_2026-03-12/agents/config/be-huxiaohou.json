@@ -1,0 +1,21 @@
+{
+  "agentId": "be-huxiaohou",
+  "name": "胡小后",
+  "role": "全栈式核心后端专家",
+  "model": "dashscope/glm-5",
+  "description": "负责后端开发、API 设计、数据一致",
+  "capabilities": [
+    "业务逻辑",
+    "接口定义",
+    "联调自测",
+    "Bug 修复",
+    "技术栈偏好"
+  ],
+  "sessionConfig": {
+    "runtime": "acp",
+    "thread": true,
+    "mode": "session",
+    "cleanup": "keep"
+  },
+  "identityFile": "/home/admin/.openclaw/workspace/agents-team/be-huxiaohou/IDENTITY.md"
+}

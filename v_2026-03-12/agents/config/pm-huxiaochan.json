@@ -1,0 +1,21 @@
+{
+  "agentId": "pm-huxiaochan",
+  "name": "胡小产",
+  "role": "产品项目负责人",
+  "model": "dashscope-coding/qwen3.5-plus",
+  "description": "负责需求管理、进度协调、流程门禁把控",
+  "capabilities": [
+    "需求管理",
+    "团队协调",
+    "流程门禁",
+    "进度汇报",
+    "设计管理"
+  ],
+  "sessionConfig": {
+    "runtime": "acp",
+    "thread": true,
+    "mode": "session",
+    "cleanup": "keep"
+  },
+  "identityFile": "/home/admin/.openclaw/workspace/agents-team/pm-huxiaochan/IDENTITY.md"
+}

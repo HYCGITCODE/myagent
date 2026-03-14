@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "97269f3c-1ce6-44b8-a9b0-1e14e3828f56",
+      "agentId": "main",
+      "name": "agent信息同步",
+      "enabled": true,
+      "deleteAfterRun": true,
+      "createdAtMs": 1773325520296,
+      "updatedAtMs": 1773417828303,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 0 1 * * ?",
+        "tz": "Asia/Tokyo"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "1、在git的myagent仓库创建一个以日期为名的文件夹（例如v_2026-03-11）；\n2、并把我现在的openclaw所有文件上传到这个文件夹中；\n3、完成后给我发一条飞书消息。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last",
+        "bestEffort": false
+      },
+      "state": {
+        "nextRunAtMs": 1773504000000,
+        "lastRunAtMs": 1773417600006,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 228297,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 2,
+        "lastError": "⚠️ 📱 Nodes: title Agent 信息同步完成, body ✅ 备份已完成：v_2026-03-14/ 文件夹已创建并推送 217 个文件到 myagent 仓库 (commit: 5b25f65) failed",
+        "lastDelivered": false,
+        "lastDeliveryError": "⚠️ 📱 Nodes: title Agent 信息同步完成, body ✅ 备份已完成：v_2026-03-14/ 文件夹已创建并推送 217 个文件到 myagent 仓库 (commit: 5b25f65) failed"
+      }
+    }
+  ]
+}

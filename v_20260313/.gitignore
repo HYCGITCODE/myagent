@@ -1,0 +1,29 @@
+# OpenClaw MyAgent Workspace
+
+# 排除大型/敏感文件
+node_modules/
+*.log
+agents/main/sessions/*.jsonl*
+!agents/main/agent/models.json
+agents/main/sessions/sessions.json
+delivery-queue/
+.cache/
+.temp/
+*.docx
+extensions/qqbot/node_modules/
+extensions/qqbot/package-lock.json
+workspace/tetris-web/node_modules/
+workspace/tetris-web/dist/
+workspace/tetris-web-git/
+workspace/tetris-web/
+browser/
+*.pma
+*journal
+LOCK
+LOG
+LOG.old
+
+# 排除临时文件
+*.swp
+*.swo
+*~

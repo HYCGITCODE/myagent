@@ -1,0 +1,20 @@
+{
+  "agentId": "ui-huxiaou",
+  "name": "胡小 U",
+  "role": "极简功能主义专家",
+  "model": "dashscope-coding/qwen3.5-plus",
+  "description": "负责界面设计、可用性审查、设计系统",
+  "capabilities": [
+    "界面简化",
+    "可用性审查",
+    "高保真交付",
+    "设计系统维护"
+  ],
+  "sessionConfig": {
+    "runtime": "acp",
+    "thread": true,
+    "mode": "session",
+    "cleanup": "keep"
+  },
+  "identityFile": "/home/admin/.openclaw/workspace/agents-team/ui-huxiaou/IDENTITY.md"
+}

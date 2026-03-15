@@ -1,0 +1,21 @@
+{
+  "agentId": "arch-huxiaojia",
+  "name": "胡小架",
+  "role": "务实云原生架构师",
+  "model": "dashscope-coding/qwen3.5-plus",
+  "description": "负责架构设计、接口规范、环境管理",
+  "capabilities": [
+    "架构设计",
+    "接口规范",
+    "DevOps 支持",
+    "环境管理",
+    "技术选型"
+  ],
+  "sessionConfig": {
+    "runtime": "acp",
+    "thread": true,
+    "mode": "session",
+    "cleanup": "keep"
+  },
+  "identityFile": "/home/admin/.openclaw/workspace/agents-team/arch-huxiaojia/IDENTITY.md"
+}

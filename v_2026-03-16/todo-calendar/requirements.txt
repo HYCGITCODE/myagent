@@ -1,0 +1,15 @@
+# Todo Calendar - Python 依赖
+# 生产环境最小依赖
+
+# UI Framework
+PyQt6>=6.4.0
+PyQt6-Qt6>=6.4.0
+
+# Database ORM
+SQLAlchemy>=2.0.0
+
+# Date Utilities
+python-dateutil>=2.8.2
+
+# Build & Package
+pyinstaller>=6.0.0

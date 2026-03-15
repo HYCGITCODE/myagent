@@ -1,0 +1,20 @@
+{
+  "agentId": "fe-huxiaoqian",
+  "name": "胡小前",
+  "role": "设计系统工程师",
+  "model": "dashscope/glm-5",
+  "description": "负责前端开发、组件实现、接口联调",
+  "capabilities": [
+    "界面实现",
+    "接口联调",
+    "自测交付",
+    "Bug 修复"
+  ],
+  "sessionConfig": {
+    "runtime": "acp",
+    "thread": true,
+    "mode": "session",
+    "cleanup": "keep"
+  },
+  "identityFile": "/home/admin/.openclaw/workspace/agents-team/fe-huxiaoqian/IDENTITY.md"
+}

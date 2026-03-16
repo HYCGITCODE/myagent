@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI News Pulse - Design Mockup</title>
+    <style>
+        /* Design Tokens */
+        :root {
+            /* Colors - Light Mode */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F9FAFB;
+            --bg-tertiary: #F3F4F6;
+            --fg-primary: #111827;
+            --fg-secondary: #6B7280;
+            --fg-tertiary: #9CA3AF;
+            --border-default: #E5E7EB;
+            --border-hover: #D1D5DB;
+            --accent-primary: #3B82F6;
+            --accent-hover: #2563EB;
+            
+            /* Typography */
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-size-xs: 12px;
+            --font-size-sm: 14px;
+            --font-size-base: 16px;
+            --font-size-lg: 18px;
+            --font-size-xl: 20px;
+            --font-size-2xl: 24px;
+            
+            /* Spacing */
+            --spacing-1: 4px;
+            --spacing-2: 8px;
+            --spacing-3: 12px;
+            --spacing-4: 16px;
+            --spacing-6: 24px;
+            --spacing-8: 32px;
+            
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-normal: 200ms ease;
+        }
+        
+        /* Dark Mode */
+        [data-theme="dark"] {
+            --bg-primary: #111827;
+            --bg-secondary: #1F2937;
+            --bg-tertiary: #374151;
+            --fg-primary: #F9FAFB;
+            --fg-secondary: #9CA3AF;
+            --fg-tertiary: #6B7280;
+            --border-default: #374151;
+            --border-hover: #4B5563;
+            --accent-primary: #60A5FA;
+            --accent-hover: #93C5FD;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-secondary);
+            color: var(--fg-primary);
+            line-height: 1.5;
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+        }
+        
+        /* Header */
+        .header {
+            height: 64px;
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--border-default);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--spacing-6);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--fg-primary);
+        }
+        
+        .theme-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-default);
+            background: var(--bg-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+        
+        .theme-toggle:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-tertiary);
+        }
+        
+        /* Source Filter */
+        .source-filter {
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--border-default);
+            padding: var(--spacing-4) var(--spacing-6);
+            display: flex;
+            gap: var(--spacing-2);
+            overflow-x: auto;
+        }
+        
+        .source-tag {
+            padding: var(--spacing-2) var(--spacing-4);
+            background-color: var(--bg-secondary);
+            color: var(--fg-secondary);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all var(--transition-fast);
+        }
+        
+        .source-tag:hover {
+            background-color: var(--accent-primary);
+            color: #FFFFFF;
+            border-color: var(--accent-primary);
+        }
+        
+        .source-tag.active {
+            background-color: var(--accent-primary);
+            color: #FFFFFF;
+            border-color: var(--accent-primary);
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-6);
+        }
+        
+        /* News Card */
+        .news-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-6);
+            margin-bottom: var(--spacing-4);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .news-card:hover {
+            background-color: var(--bg-secondary);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        
+        .news-card:active {
+            background-color: var(--bg-tertiary);
+            border-color: var(--accent-primary);
+        }
+        
+        .news-title {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--fg-primary);
+            margin-bottom: var(--spacing-2);
+            line-height: 1.3;
+        }
+        
+        .news-summary {
+            font-size: var(--font-size-sm);
+            color: var(--fg-secondary);
+            margin-bottom: var(--spacing-3);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .news-meta {
+            font-size: var(--font-size-xs);
+            color: var(--fg-tertiary);
+            display: flex;
+            gap: var(--spacing-2);
+        }
+        
+        .news-source {
+            font-weight: 500;
+        }
+        
+        /* Loading Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-secondary) 50%, var(--bg-tertiary) 75%);
+            background-size: 200% 100%;
+            animation: pulse 1.5s infinite;
+            border-radius: var(--radius-sm);
+        }
+        
+        @keyframes pulse {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .skeleton-title {
+            height: 24px;
+            width: 80%;
+            margin-bottom: var(--spacing-3);
+        }
+        
+        .skeleton-summary {
+            height: 18px;
+            width: 100%;
+            margin-bottom: var(--spacing-2);
+        }
+        
+        .skeleton-meta {
+            height: 14px;
+            width: 40%;
+        }
+        
+        /* State Examples Section */
+        .state-section {
+            margin-top: var(--spacing-8);
+            padding: var(--spacing-6);
+            background-color: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-default);
+        }
+        
+        .state-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: var(--spacing-6);
+            color: var(--fg-primary);
+        }
+        
+        .state-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-4);
+        }
+        
+        .state-label {
+            font-size: var(--font-size-sm);
+            color: var(--fg-secondary);
+            margin-bottom: var(--spacing-2);
+            font-weight: 500;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 767px) {
+            .header {
+                height: 56px;
+                padding: 0 var(--spacing-4);
+            }
+            
+            .logo {
+                font-size: var(--font-size-xl);
+            }
+            
+            .main-content {
+                padding: var(--spacing-4);
+            }
+            
+            .news-card {
+                padding: var(--spacing-4);
+            }
+            
+            .news-title {
+                font-size: var(--font-size-base);
+            }
+            
+            .news-summary {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">AI News Pulse</div>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">
+            <span id="theme-icon">🌙</span>
+        </button>
+    </header>
+    
+    <!-- Source Filter -->
+    <nav class="source-filter">
+        <button class="source-tag active">全部</button>
+        <button class="source-tag">TechCrunch AI</button>
+        <button class="source-tag">VentureBeat AI</button>
+        <button class="source-tag">The Verge AI</button>
+        <button class="source-tag">MIT Tech Review</button>
+        <button class="source-tag">Ars Technica</button>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- News Card 1 -->
+        <article class="news-card">
+            <h2 class="news-title">OpenAI 发布 GPT-5，性能提升 10 倍</h2>
+            <p class="news-summary">OpenAI 今日正式发布 GPT-5 模型，在推理能力、代码生成和多模态理解方面实现重大突破。新模型在多个基准测试中超越人类专家水平。</p>
+            <div class="news-meta">
+                <span class="news-source">TechCrunch AI</span>
+                <span>•</span>
+                <span class="news-time">2 小时前</span>
+            </div>
+        </article>
+        
+        <!-- News Card 2 -->
+        <article class="news-card">
+            <h2 class="news-title">Google DeepMind 新突破：AI 系统可自主编写并运行代码</h2>
+            <p class="news-summary">DeepMind 研究团队推出全新 AI 编程助手，不仅能生成代码，还能自主调试、优化并部署应用程序，标志着 AI 编程能力的重大飞跃。</p>
+            <div class="news-meta">
+                <span class="news-source">VentureBeat AI</span>
+                <span>•</span>
+                <span class="news-time">4 小时前</span>
+            </div>
+        </article>
+        
+        <!-- News Card 3 -->
+        <article class="news-card">
+            <h2 class="news-title">Meta 开源 LLaMA 3：最强开源大模型诞生</h2>
+            <p class="news-summary">Meta 发布 LLaMA 3 系列模型，包含 8B、70B 和 405B 三个版本。405B 版本在多项测试中接近 GPT-4 水平，引发开源社区轰动。</p>
+            <div class="news-meta">
+                <span class="news-source">The Verge AI</span>
+                <span>•</span>
+                <span class="news-time">6 小时前</span>
+            </div>
+        </article>
+        
+        <!-- News Card 4 (Loading State Example) -->
+        <article class="news-card" style="opacity: 0.6; pointer-events: none;">
+            <div class="skeleton skeleton-title"></div>
+            <div class="skeleton skeleton-summary"></div>
+            <div class="skeleton skeleton-summary" style="width: 90%;"></div>
+            <div class="skeleton skeleton-meta"></div>
+        </article>
+        
+        <!-- Component States Section -->
+        <section class="state-section">
+            <h2 class="state-title">🎨 组件状态展示</h2>
+            <div class="state-grid">
+                <div>
+                    <div class="state-label">Default State</div>
+                    <div class="news-card">
+                        <h3 class="news-title">正常态卡片</h3>
+                        <p class="news-summary">这是新闻卡片的默认状态，显示标准样式。</p>
+                        <div class="news-meta">
+                            <span class="news-source">Source</span>
+                            <span>•</span>
+                            <span>2h ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="state-label">Hover State (悬停)</div>
+                    <div class="news-card" style="background-color: var(--bg-secondary); border-color: var(--border-hover); box-shadow: var(--shadow-md); transform: translateY(-2px);">
+                        <h3 class="news-title">悬停态卡片</h3>
+                        <p class="news-summary">鼠标悬停时的视觉效果，包含阴影和位移。</p>
+                        <div class="news-meta">
+                            <span class="news-source">Source</span>
+                            <span>•</span>
+                            <span>2h ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="state-label">Source Tag - Active</div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button class="source-tag">全部</button>
+                        <button class="source-tag active">TechCrunch AI</button>
+                        <button class="source-tag">VentureBeat</button>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="state-label">Source Tag - Hover</div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button class="source-tag" style="background-color: var(--accent-primary); color: #FFFFFF; border-color: var(--accent-primary);">Hover 态</button>
+                        <button class="source-tag">正常态</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Visual Acceptance Criteria -->
+        <section class="state-section" style="margin-top: 24px;">
+            <h2 class="state-title">📏 视觉验收标准</h2>
+            <div style="font-size: var(--font-size-sm); color: var(--fg-secondary); line-height: 1.75;">
+                <p><strong>像素容忍度:</strong> &lt; 2px</p>
+                <p><strong>颜色对比度:</strong> ≥ 4.5:1 (正常文字), ≥ 3:1 (大文字)</p>
+                <p><strong>最小点击区域:</strong> 44px × 44px</p>
+                <p><strong>移动端最小字体:</strong> 14px</p>
+                <p><strong>加载超时:</strong> 3000ms 后显示重试</p>
+                <p><strong>主题切换:</strong> &lt; 100ms, 无闪烁</p>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            document.getElementById('theme-icon').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            
+            // Save preference
+            localStorage.setItem('theme', newTheme);
+        }
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.getElementById('theme-icon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+        
+        // Source tag click handlers
+        document.querySelectorAll('.source-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                document.querySelectorAll('.source-tag').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
